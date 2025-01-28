@@ -1,0 +1,29 @@
+<div class="max-w-sm w-full bg-white shadow-md rounded-lg p-5 mb-4 border">
+  <h3 class="text-lg font-semibold text-gray-800">Rezerwacja ID: {{ id }}</h3>
+
+  <div class="my-3">
+    <p class="text-sm text-gray-600">
+      <strong>Pojazd ID:</strong> {{ vehicleId }}
+    </p>
+    <p class="text-sm text-gray-600">
+      <strong>Data rozpoczęcia:</strong> {{ formatDate(startDate) }}
+    </p>
+    <p class="text-sm text-gray-600">
+      <strong>Data zakończenia:</strong> {{ formatDate(endDate) }}
+    </p>
+    <p class="text-sm text-gray-600">
+      <strong>Data zwrotu:</strong> {{ formatDate(returnDate) }}
+    </p>
+    <p class="text-sm text-gray-600">
+      <strong>Status:</strong> {{ getStatusText(status) }}
+    </p>
+  </div>
+
+  <!-- Button do rezerwacji -->
+  <button
+    (click)="onReserve()"
+    class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-200"
+  >
+    Odwołaj rezerwację
+  </button>
+</div>

@@ -1,0 +1,41 @@
+<div class="px-10 py-5">
+  <nav
+    class="flex flex-col sm:flex-row justify-between items-center font-semibold text-lg transition-all duration-300 gap-5"
+  >
+    <div class="order-1 sm:order-1 hidden sm:block">
+      <li class="list-none text-yellow-500 italic">Varico</li>
+    </div>
+
+    <div class="flex items-center justify-between w-full sm:hidden">
+      <ng-icon
+        name="tablerMenu2"
+        class="cursor-pointer text-xl"
+        (click)="toggleMenu()"
+      ></ng-icon>
+      <p class="order-2 sm:order-3 cursor-pointer hover:text-gray-500"></p>
+    </div>
+
+    <ul
+      class="order-3 sm:order-2 flex flex-col sm:flex-row items-center gap-5 sm:gap-10"
+      [ngClass]="{ hidden: menuOpen }"
+    >
+      <li
+        class="cursor-pointer hover:text-gray-500"
+        routerLink="available-cars"
+      >
+        Wszystkie auta
+      </li>
+      <li class="cursor-pointer hover:text-gray-500" routerLink="reserved-cars">
+        Zarezerwowane auta
+      </li>
+      <li class="cursor-pointer hover:text-gray-500" routerLink="reservations">
+        Rezerwacje
+      </li>
+    </ul>
+
+    <p
+      routerLink="login"
+      class="order-2 sm:order-3 cursor-pointer hover:text-gray-500 sm:block hidden"
+    ></p>
+  </nav>
+</div>

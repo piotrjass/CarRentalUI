@@ -1,0 +1,15 @@
+<ul class="flex">
+  <li>
+    @for(reservation of reservations; track reservation){
+    <app-reservation-card
+      [id]="reservation.id"
+      [vehicleId]="reservation.vehicleId"
+      [startDate]="reservation.startDate"
+      [endDate]="reservation.endDate"
+      [returnDate]="reservation.returnDate"
+      [status]="reservation.status"
+      (reserve)="onReserve(reservation.id)"
+    ></app-reservation-card>
+    }
+  </li>
+</ul>

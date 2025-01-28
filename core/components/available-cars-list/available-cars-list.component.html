@@ -1,0 +1,13 @@
+<ul class="gap-4 items-center justify-center flex-wrap">
+  @for(vehicle of vehicles; track vehicle){
+  <li>
+    <app-available-car-card
+      [make]="vehicle.make"
+      [model]="vehicle.model"
+      [year]="vehicle.year"
+      [licensePlate]="vehicle.licensePlate"
+      [status]="vehicle.status"
+    ></app-available-car-card>
+  </li>
+  }
+</ul>
