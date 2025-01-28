@@ -11,12 +11,19 @@ import { AvailableCarCardComponent } from '../available-car-card/available-car-c
 })
 export class AvailableCarsListComponent {
   vehicles: any[] = [];
-
+  isLoading: boolean = true;
   constructor(private vehicleService: VehicleService) {}
 
-  ngOnInit(): void {
-    this.vehicleService.getVehicles().subscribe((data) => {
-      this.vehicles = data;
-    });
+  ngOnInit() {
+    this.loadVehicles();
+  }
+
+  loadVehicles() {
+    setTimeout(() => {
+      this.vehicleService.getVehicles().subscribe((data) => {
+        this.vehicles = data;
+        this.isLoading = false;
+      });
+    }, 1000);
   }
 }

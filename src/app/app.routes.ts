@@ -6,7 +6,7 @@ import { ReservationsListComponent } from '../../core/components/reservations-li
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'available-cars',
     component: LandingPageComponent,
     title: 'Home',
     children: [

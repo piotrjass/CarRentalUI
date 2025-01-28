@@ -11,19 +11,23 @@ import { ReservationCardComponent } from '../reservation-card/reservation-card.c
 })
 export class ReservationsListComponent {
   reservations: any[] = []; // Tablica rezerwacji
-
+  isLoading = true;
   constructor(private reservationService: ReservationService) {}
 
-  ngOnInit(): void {
-    // Ładowanie rezerwacji z API
-    this.reservationService.getReservations().subscribe((data) => {
-      this.reservations = data;
-    });
+  ngOnInit() {
+    this.loadVehicles();
   }
 
-  // Możesz dodać logikę po kliknięciu przycisku rezerwacji, jeśli jest potrzebna
+  loadVehicles() {
+    setTimeout(() => {
+      this.reservationService.getReservations().subscribe((data) => {
+        this.reservations = data;
+        this.isLoading = false;
+      });
+    }, 1000);
+  }
+
   onReserve(reservationId: string): void {
     console.log(`Rezerwacja ${reservationId} została zarezerwowana!`);
-    // Tutaj możesz dodać logikę do rezerwacji, np. wysłać żądanie do API
   }
 }

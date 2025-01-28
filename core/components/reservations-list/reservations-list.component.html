@@ -1,3 +1,7 @@
+@if(reservations.length === 0){
+<h1 class="text-2xl font-bold mx-auto mt-20">Nie ma rezerwacji!</h1>
+}
+
 <ul class="flex">
   <li>
     @for(reservation of reservations; track reservation){

@@ -12,15 +12,23 @@ import { AvailableCarCardComponent } from '../available-car-card/available-car-c
 export class ReservedCarsListComponent {
   vehicles: any[] = [];
   reservedVehicles: any[] = [];
+  isLoading = true;
 
   constructor(private vehicleService: VehicleService) {}
 
-  ngOnInit(): void {
-    this.vehicleService.getVehicles().subscribe((data) => {
-      this.vehicles = data;
-      this.reservedVehicles = this.vehicles.filter(
-        (vehicle) => vehicle.status === 1,
-      );
-    });
+  ngOnInit() {
+    this.loadVehicles();
+  }
+
+  loadVehicles() {
+    setTimeout(() => {
+      this.vehicleService.getVehicles().subscribe((data) => {
+        this.vehicles = data;
+        this.reservedVehicles = this.vehicles.filter(
+          (vehicle) => vehicle.status === 1,
+        );
+        this.isLoading = false;
+      });
+    }, 1000);
   }
 }
