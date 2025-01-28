@@ -27,7 +27,16 @@ export class ReservationsListComponent {
     }, 1000);
   }
 
-  onReserve(reservationId: string): void {
-    console.log(`Rezerwacja ${reservationId} została zarezerwowana!`);
+  onReserve(id: any) {
+    const returnDate = new Date().toISOString();
+    this.reservationService.returnVehicle(id, returnDate).subscribe(
+      (response) => {
+        console.log('Pojazd został zwrócony!', response);
+        this.loadVehicles();
+      },
+      (error) => {
+        console.error('Błąd przy zwrocie pojazdu:', error);
+      },
+    );
   }
 }

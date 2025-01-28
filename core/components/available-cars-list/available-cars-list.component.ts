@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { VehicleService } from '../../../shared/services/vehicle-service.service';
 import { AvailableCarCardComponent } from '../available-car-card/available-car-card.component';
-
+import { ReservationService } from '../../../shared/services/reservation-service.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-available-cars-list',
   standalone: true,
@@ -12,7 +13,11 @@ import { AvailableCarCardComponent } from '../available-car-card/available-car-c
 export class AvailableCarsListComponent {
   vehicles: any[] = [];
   isLoading: boolean = true;
-  constructor(private vehicleService: VehicleService) {}
+  constructor(
+    private vehicleService: VehicleService,
+    private reservationService: ReservationService,
+    private toastr: ToastrService,
+  ) {}
 
   ngOnInit() {
     this.loadVehicles();
@@ -25,5 +30,23 @@ export class AvailableCarsListComponent {
         this.isLoading = false;
       });
     }, 1000);
+  }
+
+  onReserve(id: any) {
+    const startDate = new Date().toISOString();
+    const endDate = new Date();
+    endDate.setHours(endDate.getHours() + 1);
+    const endDateISOString = endDate.toISOString();
+    this.reservationService
+      .reserveVehicle(id, startDate, endDateISOString)
+      .subscribe(
+        (response) => {
+          console.log('Rezerwacja pomyślnie wykonana!', response);
+          this.loadVehicles();
+        },
+        (error) => {
+          console.error('Błąd przy rezerwacji:', error);
+        },
+      );
   }
 }

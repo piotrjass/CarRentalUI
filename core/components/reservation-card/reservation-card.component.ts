@@ -29,7 +29,7 @@ export class ReservationCardComponent {
 
   // Metoda do sprawdzania statusu rezerwacji
   getStatusText(status: number): string {
-    return status === 1 ? 'Zarezerwowane' : 'Nieaktywne';
+    return status === 0 ? 'Aktywna' : 'Odwołana';
   }
 
   // Wywołanie zdarzenia rezerwacji

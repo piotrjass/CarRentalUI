@@ -10,6 +10,7 @@
       [year]="vehicle.year"
       [licensePlate]="vehicle.licensePlate"
       [status]="vehicle.status"
+      (reserve)="onReserve(vehicle.id)"
     ></app-available-car-card>
   </li>
   }
