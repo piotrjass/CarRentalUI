@@ -16,7 +16,6 @@ export class ReservedCarCardComponent {
   @Input() status!: number;
   @Output() reserve = new EventEmitter<void>();
 
-  // Formatowanie daty (np. dd-mm-yyyy)
   formatDate(date: string | null): string {
     if (!date) return 'Brak daty';
     const formattedDate = new Date(date);
@@ -27,12 +26,10 @@ export class ReservedCarCardComponent {
       .padStart(2, '0')}-${formattedDate.getFullYear()}`;
   }
 
-  // Metoda do sprawdzania statusu rezerwacji
   getStatusText(status: number): string {
     return status === 1 ? 'Zarezerwowane' : 'Nieaktywne';
   }
 
-  // Wywołanie zdarzenia rezerwacji
   onReserve(): void {
     this.reserve.emit();
   }

@@ -10,7 +10,7 @@ import { ReservationCardComponent } from '../reservation-card/reservation-card.c
   styleUrl: './reservations-list.component.css',
 })
 export class ReservationsListComponent {
-  reservations: any[] = []; // Tablica rezerwacji
+  reservations: any[] = [];
   isLoading = true;
   constructor(private reservationService: ReservationService) {}
 

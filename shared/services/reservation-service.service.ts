@@ -6,14 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ReservationService {
-  private apiUrl =
-    'https://localhost:44334/api/VehicleReservation/reservations'; // Zmienna URL do API rezerwacji
-  private reserveUrl = 'https://localhost:44334/api/VehicleReservation/reserve'; // URL do rezerwacji pojazdu
-  private returnUrl = 'https://localhost:44334/api/VehicleReservation/return'; // URL do zwrotu pojazdu
+  private baseUrl = 'https://localhost:44334/api/VehicleReservation';
+
   constructor(private http: HttpClient) {}
 
   getReservations(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl); // Zwracanie listy rezerwacji
+    return this.http.get<any[]>(`${this.baseUrl}/reservations`);
   }
 
   reserveVehicle(
@@ -21,20 +19,12 @@ export class ReservationService {
     startDate: string,
     endDate: string,
   ): Observable<any> {
-    const body = {
-      vehicleId: vehicleId,
-      startDate: startDate,
-      endDate: endDate,
-    };
-    return this.http.post<any>(this.reserveUrl, body);
+    const body = { vehicleId, startDate, endDate };
+    return this.http.post<any>(`${this.baseUrl}/reserve`, body);
   }
 
   returnVehicle(reservationId: string, returnDate: string): Observable<any> {
-    const body = {
-      reservationId: reservationId,
-      returnDate: returnDate,
-    };
-
-    return this.http.post<any>(this.returnUrl, body);
+    const body = { reservationId, returnDate };
+    return this.http.post<any>(`${this.baseUrl}/return`, body);
   }
 }

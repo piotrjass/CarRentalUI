@@ -6,10 +6,15 @@ import { ReservationsListComponent } from '../../core/components/reservations-li
 
 export const routes: Routes = [
   {
-    path: 'available-cars',
+    path: '',
     component: LandingPageComponent,
     title: 'Home',
     children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'available-cars', // Automatyczne przekierowanie na /available-cars
+      },
       {
         path: 'available-cars',
         component: AvailableCarsListComponent,
@@ -18,7 +23,7 @@ export const routes: Routes = [
       {
         path: 'reserved-cars',
         component: ReservedCarsListComponent,
-        title: 'Zarezerwowane auta ',
+        title: 'Zarezerwowane auta',
       },
       {
         path: 'reservations',
